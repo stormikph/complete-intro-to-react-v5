@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import ReactDOM from "react-dom";
-import { Router } from "@reach/router";
+import { Router, Link } from "@reach/router";
 import Details from "./Details";
 import SearchParams from "./SearchParams";
 import ThemeContext from "./ThemeContext";
-import NavBar from "./NavBar";
 
 const App = () => {
   const theme = useState("darkblue");
   return (
     <ThemeContext.Provider value={theme}>
       <div>
-        <NavBar />
+        <Header>
+          <Link to="/">Adopt Me!</Link>
+        </Header>
         <Router>
           <SearchParams path="/" />
           <Details path="/details/:id" />
@@ -21,4 +22,4 @@ const App = () => {
   );
 };
 
-ReactDOM.render(<App />, document.getElementById("root"));
+export default App;
